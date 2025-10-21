@@ -141,6 +141,12 @@ docker run -d --name moontv -p 3000:3000 --env PASSWORD=your_password ghcr.io/lu
 
 访问 `http://服务器 IP:3000` 即可。（需自行到服务器控制台放通 `3000` 端口）
 
+### RaspberryPi 2B 部署  
+···bash
+docker build --memory="512m" --memory-swap="-1" -t moontv:v1 .
+docker run -d --name moontv -p 3000:3000 --env PASSWORD=<password> moontv:v1
+```
+
 ## Docker Compose 最佳实践
 
 若你使用 docker compose 部署，以下是一些 compose 示例
