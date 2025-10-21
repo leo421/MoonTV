@@ -145,7 +145,7 @@ docker run -d --name moontv -p 3000:3000 --env PASSWORD=your_password ghcr.io/lu
 
 ```bash  
 docker build --memory="512m" --memory-swap="-1" -t moontv:v1 .
-docker run -d --name moontv -p 3000:3000 --env PASSWORD=<password> moontv:v1
+docker run -d --name moontv -p 3000:3000 --restart=always --env PASSWORD=<password> moontv:v1
 ```  
 
 ## Docker Compose 最佳实践
