@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import type { Metadata, Viewport } from 'next';
+import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 import './globals.css';
@@ -32,11 +32,6 @@ export async function generateMetadata(): Promise<Metadata> {
     manifest: '/manifest.json',
   };
 }
-
-export const viewport: Viewport = {
-  themeColor: '#000000',
-  viewportFit: 'cover',
-};
 
 export default async function RootLayout({
   children,

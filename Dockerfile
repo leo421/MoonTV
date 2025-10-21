@@ -9,8 +9,13 @@ WORKDIR /app
 # 仅复制依赖清单，提高构建缓存利用率
 COPY package.json pnpm-lock.yaml ./
 
+RUN rm -f pnpm-lock.yaml
+
+ENV NODE_OPTIONS="--max-old-space-size=512"
+
 # 安装所有依赖（含 devDependencies，后续会裁剪）
-RUN pnpm install --frozen-lockfile
+# RUN pnpm install --frozen-lockfile
+RUN pnpm install 
 
 # ---- 第 2 阶段：构建项目 ----
 FROM node:20-alpine AS builder
@@ -30,6 +35,8 @@ ENV DOCKER_ENV=true
 
 # For Docker builds, force dynamic rendering to read runtime environment variables.
 RUN sed -i "/const inter = Inter({ subsets: \['latin'] });/a export const dynamic = 'force-dynamic';" src/app/layout.tsx
+
+ENV NODE_OPTIONS="--max-old-space-size=512"
 
 # 生成生产构建
 RUN pnpm run build
